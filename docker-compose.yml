@@ -1,0 +1,48 @@
+version: '3'
+services:
+
+  discovery:
+    image: eshopicle/eshopicle-discovery
+    container_name: eshopicle-discovery
+    build:
+      context: ./eshopicle-discovery
+      dockerfile: Dockerfile
+    networks:
+      - nw-connect
+    ports:
+      - "8761:8761"
+  config:
+    image: eshopicle/eshopicle-config
+    container_name: eshopicle-config
+    build:
+      context: ./eshopicle-config
+      dockerfile: Dockerfile
+    networks:
+      - nw-connect      
+    ports:
+      - "8002:8002"
+  gateway:
+    image: eshopicle/eshopicle-gateway
+    container_name: eshopicle-gateway
+    build:
+      context: ./eshopicle-gateway
+      dockerfile: Dockerfile
+    networks:
+      - nw-connect
+    ports:
+      - "8080:8080"
+    links:
+      - discovery
+  monitoring:
+    image: eshopicle/eshopicle-monitoring
+    container_name: eshopicle-monitoring
+    build:
+      context: ./eshopicle-monitoring
+      dockerfile: Dockerfile
+    networks:
+      - nw-connect      
+    ports:
+      - "9411:9411"
+networks:
+   nw-connect: {}
+    
