@@ -27,7 +27,6 @@
 		<module>eshopicle-discovery</module>
 		<module>eshopicle-config</module>
 		<module>eshopicle-gateway</module>
-		<module>eshopicle-monitoring</module>
 		<module>eshopicle-catalog</module>
 		
 	</modules>
